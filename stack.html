@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>stack</title>
+</head>
+<body>
+<h1>stack in console</h1>
+<script type="text/javascript">
+	
+	function Stack() {
+
+		this.count = 0;
+		this.storage = {};
+
+		this.push = function(value) {
+			this.storage[this.count] = value;
+			this.count++;
+		}
+
+		this.pop = function() {
+			if(this.count == 0) {
+			   return "not defined";	
+			} else{
+			 this.count--;
+			 let result = this.storage[this.count];
+			 delete this.storage[this.count];
+			 return result;
+			}
+			 
+		}
+
+		this.size = function(){
+			return this.count;
+		}
+
+		this.peek = function(){
+			return this.storage[this.count -1];
+		}
+	}
+
+	const newStack = new Stack();
+
+	newStack.push(45);
+	newStack.push("prince");
+	newStack.push("sunil");
+	console.log(newStack.pop());
+	console.log(newStack.peek());
+	console.log(newStack.size());
+</script>
+</body>
+</html>

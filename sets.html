@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sets</title>
+</head>
+<body>
+<h1>Sets</h1>
+
+<script type="text/javascript">
+	
+function MySet(){
+
+	let collection = [];
+
+	this.has = function(element) {
+		return (collection.indexOf(element) !== -1);
+	}
+
+	this.add = function(ele){
+		if(!this.has(ele)){
+		  collection.push(ele);
+		  return true;
+		}else {
+			return false;
+		}
+	}
+
+	this.values = function(){
+		return collection;
+	};
+
+	this.remove = function(e) {
+		if(this.has(e)){
+			index = this.collection.indexOf(e);
+			collection.splice(index, 1);
+			return true;
+
+		}else {
+			return false;
+		}
+	};
+
+    this.size = function(){
+    	return collection.length;
+    }
+
+    this.union = function(otherset){
+    	let unionSet = new MySet();
+    	let firstSet = this.values();
+    	let secondSet = otherset.values();
+    	firstSet.forEach(function(e) {
+    		unionSet.add(e);
+    	});
+    	secondSet.forEach(function(e) {
+    		unionSet.add(e);
+    	});
+    	return unionSet;
+    }
+
+    this.interSection = function(otherset) {
+    	let interSectionSet = new MySet();
+        let firstSet = this.values();
+        firstSet.forEach(function(e) {
+        	if(otherset.has(e)){
+        		interSectionSet.add(e);
+        	}
+        });
+       return interSectionSet;
+    };
+
+    this.difference = function(otherset) {
+    	let differenceSet = new MySet();
+        let firstSet = this.values();
+        firstSet.forEach(function(e) {
+        	if(!otherset.has(e)){
+        		differenceSet.add(e);
+        	}
+        });
+       return differenceSet;
+    };
+    
+    this.subset = function(otherset){
+    	let firstSet = this.values();
+        return firstSet.every(function(value){
+        	 return otherset.has(value);
+        });
+
+    };
+}
+let setA = new MySet();
+let setB = new MySet();
+
+setA.add("a");
+setA.add("b");
+setA.add("c");
+setA.add("d");
+setB.add("a");
+setB.add("c");
+setB.add("d");
+setA.add("e");
+console.log(setA.subset(setB));
+console.log(setA.union(setB));
+console.log(setA.interSection(setB));
+console.log(setA.difference(setB));
+console.log(setA.values());
+</script>
+</body>
+</html>
